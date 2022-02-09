@@ -10,7 +10,6 @@ export default class UserController implements IUserController {
     public static getInstance = (app: Express): UserController => {
         if (UserController.userController === null) {
             UserController.userController = new UserController();
-            app.get("/api/hello", (req, res) => res.send('Tuiter Speaking.'));
             app.get("/api/users", UserController.userController.findAllUsers);
             app.get("/api/users/:uid", UserController.userController.findUserById);
             app.post("/api/users", UserController.userController.createUser);
@@ -38,7 +37,7 @@ export default class UserController implements IUserController {
     updateUser = (req: Request, res: Response) =>
         UserController.userDao.updateUser(req.params.uid, req.body)
             .then((status) => res.send(status));
-    
+
     deleteUser = (req: Request, res: Response) =>
         UserController.userDao.deleteUser(req.params.uid)
             .then((status) => res.send(status));
