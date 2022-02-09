@@ -16,6 +16,8 @@ const TuitSchema = new mongoose.Schema<Tuit>(
             ref: "UserModel"
         },
     },
-    {collection: "tuits"}
+    {
+        collection: "tuits"
+    }
 );
 export default TuitSchema;

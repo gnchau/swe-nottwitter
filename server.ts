@@ -1,11 +1,19 @@
-import express, {Request, Response} from 'express';
+import express, {Request, Response} from "express";
+import UserController from "./controllers/UserController";
+import TuitController from "./controllers/TuitController";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+
+mongoose.connect("mongodb+srv://gnchau:securepass12@cluster0.ytj7o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+
 const app = express();
+app.use(bodyParser.json());
 
-app.get('/hello', (req: Request, res: Response) =>
+const userController = UserController.getInstance(app);
+const tuitController = TuitController.getInstance(app);
+
+app.get('', (req, res) =>
     res.send('Hello World!'));
-
-app.get('/add/:a/:b', (req: Request, res: Response) =>
-    res.send(req.params.a + req.params.b));
 
 const PORT = 4000;
 app.listen(process.env.PORT || PORT);
