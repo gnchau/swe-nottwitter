@@ -78,4 +78,13 @@ export default class UserDao implements IUserDao {
     async deleteUser(uid: string): Promise<any> {
         return UserModel.deleteOne({_id: uid});
     };
+
+    /**
+     * Removes all users from the database. Useful for testing
+     * @returns Promise To be notified when all users are removed from the
+     * database
+     */
+    deleteAllUsers = async (): Promise<any> =>
+        UserModel.deleteMany({});
+
 }

@@ -10,4 +10,6 @@ export default interface IUserController {
     deleteUser(req: Request, res: Response): void;
 
     updateUser(req: Request, res: Response): void;
+
+    deleteAllUsers(req: Request, res: Response): Promise<any>;
 }

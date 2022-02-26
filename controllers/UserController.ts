@@ -106,4 +106,14 @@ export default class UserController implements IUserController {
     deleteUser = (req: Request, res: Response) =>
         UserController.userDao.deleteUser(req.params.uid)
             .then((status) => res.send(status));
+
+    /**
+     * Removes all user instances from the database. Useful for testing
+     * @param {Request} req Represents request from client
+     * @param {Response} res Represents response to client, including status
+     * on whether deleting all users was successful or not
+     */
+    deleteAllUsers = (req: Request, res: Response) =>
+        UserController.userDao.deleteAllUsers()
+            .then((status) => res.send(status));
 };
