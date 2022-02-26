@@ -21,7 +21,7 @@ import IUserController from "../interfaces/UserController";
  *     </li>
  *     <li>PUT /api/users/:uid used to to modify a specified User instance
  *     </li>
- *     <li>DELETE users/:uid removes a specified User instance
+ *     <li>DELETE /api/users/:uid removes a specified User instance
  *     </li>
  * </ul>
  * @property {UserDao} userDao Singleton DAO implementing user CRUD operations
@@ -44,6 +44,7 @@ export default class UserController implements IUserController {
             app.post("/api/users", UserController.userController.createUser);
             app.put("/api/users/:uid", UserController.userController.updateUser);
             app.delete("/api/users/:uid", UserController.userController.deleteUser);
+            app.delete("/api/users", UserController.userController.deleteAllUsers);
         }
         return UserController.userController;
     }
