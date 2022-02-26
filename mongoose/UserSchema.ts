@@ -1,5 +1,14 @@
-import mongoose from "mongoose";
+/**
+ * @file Serves as a Mongoose Schema for a Tuiter User.
+ */
+
+import mongoose, {Schema} from "mongoose";
 import User from "../models/User";
+
+/**
+ * @const {Schema} UserSchema is a schema which represents
+ * a User instance stored in a MongoDB Atlas database.
+ */
 
 const UserSchema = new mongoose.Schema<User>(
     {
@@ -26,6 +35,7 @@ const UserSchema = new mongoose.Schema<User>(
             type: Date,
             default: Date.now
         },
+        bookmarks: [{type: Schema.Types.ObjectId, ref: "TuitModel"}],
         location: {
             latitude: {
                 type: Number, default: 0.0

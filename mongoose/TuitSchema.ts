@@ -1,5 +1,14 @@
+/**
+ * @file Serves as a Mongoose Schema for Tuiter's Tuit function.
+ */
+
 import mongoose, {Schema} from "mongoose";
 import Tuit from "../models/Tuit";
+
+/**
+ * @const {Schema} TuitSchema is a Mongoose schema which represents
+ * a Tuit instance that is stored in a MongoDB Atlas database.
+ */
 
 const TuitSchema = new mongoose.Schema<Tuit>(
     {

@@ -12,4 +12,4 @@ export default interface ITuitDao {
     updateTuit(tid: string, tuit: Tuit): Promise<any>;
 
     deleteTuit(tid: string): Promise<any>;
-}
+};

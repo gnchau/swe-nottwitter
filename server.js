@@ -1,3 +1,7 @@
+/**
+ * @file Implements the .js counterpart to the .ts server.
+ */
+
 const express = require('express');
 const app = express();
 
