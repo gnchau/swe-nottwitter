@@ -23,6 +23,9 @@ import IUserController from "../interfaces/UserController";
  *     </li>
  *     <li>DELETE /api/users/:uid removes a specified User instance
  *     </li>
+ *     </li>
+ *     <li>DELETE /api/users removes all user instances from the database
+ *     </li>
  * </ul>
  * @property {UserDao} userDao Singleton DAO implementing user CRUD operations
  * @property {UserController} userController Singleton controller implementing
