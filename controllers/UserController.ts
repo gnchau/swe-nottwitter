@@ -48,6 +48,13 @@ export default class UserController implements IUserController {
             app.put("/api/users/:uid", UserController.userController.updateUser);
             app.delete("/api/users/:uid", UserController.userController.deleteUser);
             app.delete("/api/users", UserController.userController.deleteAllUsers);
+
+            app.post('/api/login', UserController.userController.login);
+            app.get("/api/users/username/:username/delete",
+                UserController.userController.deleteUsersByUsername);
+            app.get("/api/users/username/:username/get",
+                UserController.userController.findUserByUsername);
+
         }
         return UserController.userController;
     }
@@ -120,4 +127,46 @@ export default class UserController implements IUserController {
     deleteAllUsers = (req: Request, res: Response) =>
         UserController.userDao.deleteAllUsers()
             .then((status) => res.send(status));
+
+    /**
+     * Removes Users given their username
+     * @param req request from client that contains the Username
+     * @param res response to client that indicates the status of deletion
+     */
+    deleteUsersByUsername = (req: Request, res: Response) =>
+        UserController.userDao.deleteUsersByUsername(req.params.username)
+            .then((status: any) => res.send(status));
+
+
+    /**
+     * Authorizes the User
+     * @param req request from client that contains username and password
+     * @param res response to client that contains the User's login information
+     */
+    login = (req: Request, res: Response) =>
+        UserController.userDao.findUserByCredentials(req.body.username, req.body.password)
+            .then(user => {res.json(user)});
+
+    /**
+     * Register the User.
+     * @param req request from client that contains registration information
+     * @param res response to client that indicates if a User exists
+     * bue does not create a new User
+     */
+    register = (req: Request, res: Response) =>
+        UserController.userDao.findUserByUsername(req.body.username)
+            .then(user => {
+
+            })
+
+    /**
+     * Retrieves the User by their username
+     * @param {Request} req request from client that includes params that
+     * contains a User's username
+     * @param {Response} res response to client that includes the
+     * body formatted as JSON containing the User with the given username
+     */
+    findUserByUsername = (req: Request, res: Response) =>
+        UserController.userDao.findUserByUsername(req.params.username)
+            .then((user: User) => res.json(user));
 };

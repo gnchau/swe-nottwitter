@@ -13,7 +13,7 @@ import User from "./User";
  * @property {User} postBy represents who posted the Tuit originally
  */
 
-export default class Tuit {
+export default interface Tuit {
     private tuit: string = '';
     private postedOn: Date = new Date();
     private postedBy: User | null = null;

@@ -25,10 +25,20 @@ import MessageController from "./controllers/MessageController";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb+srv://gnchau:securepass1234123412341234@a2.pzayb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
+const cors = require('cors');
+// build the connection string
+const PROTOCOL = "mongodb+srv";
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const HOST = "cluster0.5p0fs.mongodb.net";
+const DB_NAME = "myFirstDatabase";
+const DB_QUERY = "retryWrites=true&w=majority";
+const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
+mongoose.connect(connectionString);
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);

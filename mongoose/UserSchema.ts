@@ -9,42 +9,23 @@ import User from "../models/User";
  * @const {Schema} UserSchema is a schema which represents
  * a User instance stored in a MongoDB Atlas database.
  */
-
-const UserSchema = new mongoose.Schema<User>(
-    {
-        username: {type: String, required: true},
-        password: {type: String, required: true},
-        firstName: String,
-        lastName: String,
-        email: String,
-        profilePhoto: String,
-        headerImage: String,
-        accountType: {
-            type: String,
-            default: 'PERSONAL',
-            enum: ['PERSONAL', 'ACADEMIC', 'PROFESSIONAL']
-        },
-        maritalStatus: {
-            type: String,
-            default: 'SINGLE',
-            enum: ['MARRIED', 'SINGLE', 'WIDOWED']
-        },
-        biography: String,
-        dateOfBirth: Date,
-        joined: {
-            type: Date,
-            default: Date.now
-        },
-        bookmarks: [{type: Schema.Types.ObjectId, ref: "TuitModel"}],
-        location: {
-            latitude: {
-                type: Number, default: 0.0
-            },
-            longitude: {
-                type: Number, default: 0.0
-            },
-        }
+const UserSchema = new mongoose.Schema<User>({
+    username: {type: String, required: true, default: `testusername${Date.now()}`},
+    password: {type: String, required: true, default: `testpassword${Date.now()}`},
+    firstName: String,
+    lastName: String,
+    email: {type: String, required: true, default: `testemail${Date.now()}`},
+    profilePhoto: String,
+    headerImage: String,
+    biography: String,
+    dateOfBirth: Date,
+    accountType: {type: String, enum: ["PERSONAL", "ACADEMIC", "PROFESSIONAL"]},
+    maritalStatus: {type: String, enum: ["MARRIED", "SINGLE", "WIDOWED"]},
+    location: {
+        latitude: Number,
+        longitude: Number
     },
-    {collection: 'users'}
-);
+    salary: {type: Number, default: 50000}
+}, {collection: "users"});
+
 export default UserSchema;
