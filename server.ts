@@ -35,7 +35,8 @@ const HOST = "cluster0.5p0fs.mongodb.net";
 const DB_NAME = "myFirstDatabase";
 const DB_QUERY = "retryWrites=true&w=majority";
 
-const connectionString = "mongodb+srv://gchau:BVcod02WiKpBAsYG@cluster0.5p0fs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
+//const connectionString = "mongodb+srv://gchau:BVcod02WiKpBAsYG@cluster0.5p0fs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(connectionString);
 const app = express();
 app.use(bodyParser.json());
@@ -48,7 +49,7 @@ const followController = FollowController.getInstance(app);
 const bookController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 
-app.get('', (req, res) =>
+app.get('/', (req, res) =>
     res.send('Hello World!'));
 
 /**
