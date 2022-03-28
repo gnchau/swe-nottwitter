@@ -27,14 +27,15 @@ import mongoose from "mongoose";
 
 
 const cors = require('cors');
-// build the connection string
+// build the connection string, not using for now
 const PROTOCOL = "mongodb+srv";
 const DB_USERNAME = process.env.DB_USERNAME;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const HOST = "cluster0.5p0fs.mongodb.net";
 const DB_NAME = "myFirstDatabase";
 const DB_QUERY = "retryWrites=true&w=majority";
-const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;
+
+const connectionString = "mongodb+srv://gchau:BVcod02WiKpBAsYG@cluster0.5p0fs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(connectionString);
 const app = express();
 app.use(bodyParser.json());
