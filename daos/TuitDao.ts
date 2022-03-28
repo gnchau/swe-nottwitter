@@ -29,16 +29,6 @@ export default class TuitDao implements ITuitDao {
     private constructor() {
     }
 
-    /**
-     * Retrieve all preexinting Tuits.
-     *
-     * @return {Promise<Tuit[]>}
-     * @memberof TuitDao
-     */
-     findAllTuitsByUser = async (uid: string): Promise<Tuit[]> =>
-         TuitModel.find({postedBy: uid})
-             .populate("postedBy")
-             .exec();
 
     /**
      * Retrieves all Tuits posted by a specified User.
@@ -47,9 +37,10 @@ export default class TuitDao implements ITuitDao {
      * @return {Promise<Tuit[]>}
      * @memberof TuitDao
      */
-    async findTuitsByUser(uid: string): Promise<Tuit[]> {
-        return TuitModel.find({postedBy: uid});
-    }
+    findTuitsByUser = async (uid: string): Promise<Tuit[]> =>
+        TuitModel.find({postedBy: uid})
+            .populate("postedBy")
+            .exec();
 
     /**
      * Retrieves a specific Tuit.
@@ -58,10 +49,10 @@ export default class TuitDao implements ITuitDao {
      * @return {Promise<any>}
      * @memberof TuitDao
      */
-     findTuitById = async (uid: string): Promise<any> =>
-         TuitModel.findById(uid)
-             .populate("postedBy")
-             .exec();
+    findTuitById = async (uid: string): Promise<any> =>
+        TuitModel.findById(uid)
+            .populate("postedBy")
+            .exec();
 
     /**
      * Creates a Tuit instance for insertion into the database
@@ -70,8 +61,8 @@ export default class TuitDao implements ITuitDao {
      * @param {Tuit} tuit represenss the Tuit object that has been created.
      * @returns {Promise<Tuit>}
      */
-     createTuitByUser = async (uid: string, tuit: Tuit): Promise<Tuit> =>
-         TuitModel.create({...tuit, postedBy: uid});
+    createTuitByUser = async (uid: string, tuit: Tuit): Promise<Tuit> =>
+        TuitModel.create({...tuit, postedBy: uid});
     /**
      * Deletes a Tuit instance from the database.
      *
@@ -79,8 +70,8 @@ export default class TuitDao implements ITuitDao {
      * @return {Promise<any>}
      * @memberof TuitDao
      */
-     deleteTuit = async (uid: string): Promise<any> =>
-         TuitModel.deleteOne({_id: uid});
+    deleteTuit = async (uid: string): Promise<any> =>
+        TuitModel.deleteOne({_id: uid});
 
     /**
      * Modifies a preexisting Tuit's contents
@@ -90,17 +81,17 @@ export default class TuitDao implements ITuitDao {
      * @return {Promise<any>}
      * @memberof TuitDao
      */
-     updateTuit = async (uid: string, tuit: Tuit): Promise<any> =>
-         TuitModel.updateOne(
-             {_id: uid},
-             {$set: tuit});
+    updateTuit = async (uid: string, tuit: Tuit): Promise<any> =>
+        TuitModel.updateOne(
+            {_id: uid},
+            {$set: tuit});
 
     /**
      * Delete all tuits post by a user
      * @param uid represents the primary key of the User whose Tuits will be deleted
      */
     async deleteTuitsByUser(uid: string): Promise<any> {
-        return TuitModel.deleteMany({postBy: uid});
+        return TuitModel.deleteMany({postedBy: uid});
     }
 
     /**
@@ -111,7 +102,7 @@ export default class TuitDao implements ITuitDao {
      * @returns {Promise<Tuit>}
      */
     async createTuit(uid: string, tuit: Tuit): Promise<Tuit> {
-        return await TuitModel.create({...tuit, postBy: uid});
+        return await TuitModel.create({...tuit, postedBy: uid});
     }
 
     /**
@@ -120,8 +111,8 @@ export default class TuitDao implements ITuitDao {
      * @return {Promise<Tuit[]>}
      * @memberof TuitDao
      */
-    findAllTuits(): Promise<Tuit[]> {
-        return TuitModel.find()
-            .populate("postBy").exec();
-    }
+    findAllTuits = async (): Promise<Tuit[]> =>
+        TuitModel.find()
+            .populate("postedBy")
+            .exec();
 }

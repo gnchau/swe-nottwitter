@@ -14,13 +14,13 @@ import Stats from "./Stats";
  * @property {User} postBy represents who posted the Tuit originally
  */
 
-export default class Tuit {
-    private tuit: string = '';
-    private postedOn: Date = new Date();
-    private postBy: User | null = null;
-    private image: string | null = null;
-    private youtube: string | null = null;
-    private avatarLogo: string | null = null;
-    private imageOverlay: string | null = null;
-    private stats: Stats | null = null;
-}
+export default interface Tuit {
+    tuit: string,
+    postedBy: User,
+    postedOn?: Date,
+    image?: String,
+    youtube?: String,
+    avatarLogo?: String,
+    imageOverlay?: String,
+    stats: Stats
+};
