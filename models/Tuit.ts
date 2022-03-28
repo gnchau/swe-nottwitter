@@ -3,6 +3,7 @@
  */
 
 import User from "./User";
+import Stats from "./Stats";
 
 /**
  * @class Tuit A data type which represents
@@ -13,8 +14,13 @@ import User from "./User";
  * @property {User} postBy represents who posted the Tuit originally
  */
 
-export default interface Tuit {
+export default class Tuit {
     private tuit: string = '';
     private postedOn: Date = new Date();
-    private postedBy: User | null = null;
+    private postBy: User | null = null;
+    private image: string | null = null;
+    private youtube: string | null = null;
+    private avatarLogo: string | null = null;
+    private imageOverlay: string | null = null;
+    private stats: Stats | null = null;
 }
