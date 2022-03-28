@@ -102,4 +102,26 @@ export default class TuitDao implements ITuitDao {
     async deleteTuitsByUser(uid: string): Promise<any> {
         return TuitModel.deleteMany({postBy: uid});
     }
+
+    /**
+     * Create and insert a Tuit instance into the database
+     *
+     * @param {string} uid represents the uid of the the User who created the Tuit
+     * @param {Tuit} tuit represent the Tuit object that has been created
+     * @returns {Promise<Tuit>}
+     */
+    async createTuit(uid: string, tuit: Tuit): Promise<Tuit> {
+        return await TuitModel.create({...tuit, postBy: uid});
+    }
+
+    /**
+     * Retrieves all Tuits
+     *
+     * @return {Promise<Tuit[]>}
+     * @memberof TuitDao
+     */
+    findAllTuits(): Promise<Tuit[]> {
+        return TuitModel.find()
+            .populate("postBy").exec();
+    }
 }
