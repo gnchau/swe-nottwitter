@@ -1,3 +1,7 @@
+/**
+ * @file Implements a mongoose schema that defines the shape of the document in the tuits collection.
+ */
+
 import mongoose, {Schema} from "mongoose";
 import Tuit from "../../models/tuits/Tuit";
 const TuitSchema = new mongoose.Schema<Tuit>({
@@ -11,7 +15,8 @@ const TuitSchema = new mongoose.Schema<Tuit>({
     stats: {
         replies: {type: Number, default: 0},
         retuits: {type: Number, default: 0},
-        likes: {type: Number, default: 0}
+        likes: {type: Number, default: 0},
+        dislikes: {type: Number, default: 0}
     }
 }, {collection: "tuits"});
 export default TuitSchema;
