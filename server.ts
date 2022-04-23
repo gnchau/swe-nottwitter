@@ -38,7 +38,9 @@ app.use(cors({
     origin: process.env.CORS_ORIGIN
 }));
 
+const SECRET = 'process.env.SECRET';
 let sess = {
+    secret: SECRET,
     secret: process.env.EXPRESS_SESSION_SECRET,
     saveUninitialized: true,
     resave: true,
