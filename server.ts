@@ -31,15 +31,14 @@ const HOST = "cluster0.ta4qy.mongodb.net";
 const DB_NAME = "myFirstDatabase";
 const DB_QUERY = "retryWrites=true&w=majority";
 const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;// connect to the database
-mongoose.connect(connectionString);
 
-
-
-const app = express();
 app.use(cors({
   credentials: true,
-  origin: "https://nottwitter-react-a4.netlify.app/"
+  origin: "https://nottwitter-react-a4.netlify.app"
 }));
+
+mongoose.connect(connectionString);
+const app = express();
 
 const SECRET = process.env.SECRET;
 let sess = {
@@ -79,4 +78,4 @@ GroupController(app);
  * but use environment variable PORT on Heroku if available.
  */
 const PORT = 4000;
-app.listen(process.env.PORT || PORT); 
+app.listen(process.env.PORT || PORT);
