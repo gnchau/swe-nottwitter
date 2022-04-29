@@ -32,13 +32,13 @@ const DB_NAME = "myFirstDatabase";
 const DB_QUERY = "retryWrites=true&w=majority";
 const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;// connect to the database
 
+const app = express();
 app.use(cors({
   credentials: true,
   origin: "https://nottwitter-react-a4.netlify.app"
 }));
 
 mongoose.connect(connectionString);
-const app = express();
 
 const SECRET = process.env.SECRET;
 let sess = {
