@@ -41,7 +41,7 @@ app.use(cors({
     origin: process.env.CORS_ORIGIN
 }));
 
-const SECRET = 'process.env.SECRET';
+const SECRET = process.env.SECRET;
 let sess = {
     secret: SECRET,
     saveUninitialized: true,
