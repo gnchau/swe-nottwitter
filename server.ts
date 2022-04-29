@@ -6,7 +6,7 @@
  *     <li>tuits</li>
  *     <li>likes</li>
  * </ul>
- * 
+ *
  * Connects to a remote MongoDB instance hosted on the Atlas cloud database
  * service
  */
@@ -37,8 +37,8 @@ mongoose.connect(connectionString);
 
 const app = express();
 app.use(cors({
-    credentials: true,
-    origin: process.env.CORS_ORIGIN
+  credentials: true,
+  origin: "https://nottwitter-react-a4.netlify.app/"
 }));
 
 const SECRET = process.env.SECRET;
